@@ -1,0 +1,36 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-sm border-b border-white/10">
+  <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="text-lg font-semibold tracking-tight hover:text-accent transition-colors">
+      David Zhou
+    </a>
+
+    <ul class="flex items-center gap-8">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class={`text-sm font-medium transition-colors ${
+              currentPath === href
+                ? 'text-accent'
+                : 'text-white/70 hover:text-white'
+            }`}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

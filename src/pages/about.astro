@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+
+const experience = await getCollection('experience');
+const sortedExperience = experience.sort((a, b) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const skills = [
+  'React', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'TailwindCSS',
+  'Node.js', 'Express', 'Fastify', 'REST APIs', 'SQL',
+  'AstroJS', 'Next.js', 'Umbraco CMS', 'Contentful', 'Docker',
+  'Azure DevOps', 'CI/CD', 'Agile/Scrum',
+];
+
+const tools = [
+  'Visual Studio Code', 'GitHub', 'Git', 'Figma', 'Chrome DevTools',
+  'Docker', 'Azure DevOps', 'Salesforce', 'Adobe Target', 'Kameleoon',
+  'Confluence', 'Jest', 'React Developer Tools', 'Vite', 'Webpack',
+];
+---
+
+<Base title="About | David Zhou" description="Learn more about David Zhou, a software engineer with 5+ years of experience building scalable, accessible web applications.">
+  <Nav />
+
+  <main class="pt-24 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Header -->
+      <section class="mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">About Me</h1>
+        <p class="text-xl text-white/60">
+          Software Engineer based in New York City Metropolitan Area
+        </p>
+      </section>
+
+      <!-- Bio -->
+      <section class="mb-16 prose prose-invert max-w-none">
+        <h2 class="text-2xl font-semibold mb-4">Background</h2>
+        <p class="text-white/70 leading-relaxed">
+          Software Engineer with 5+ years of experience building scalable, accessible web applications
+          in Agile/Scrum environments. Experienced across the software development lifecycle (SDLC),
+          including requirements refinement, development, testing, code reviews, and deployment for
+          production systems.
+        </p>
+        <p class="text-white/70 leading-relaxed mt-4">
+          Specializes in frontend development using React, TypeScript, JavaScript, HTML, CSS, and
+          TailwindCSS, with full-stack experience using Node.js, RESTful APIs, databases, and content
+          management systems (CMS). Collaborative engineer with experience working alongside product
+          managers, UX/UI designers, QA, marketing, and analytics teams to deliver customer-focused
+          solutions.
+        </p>
+        <p class="text-white/70 leading-relaxed mt-4">
+          Familiar with CI/CD pipelines, cloud-based deployments, experimentation, A/B testing, and
+          personalization using tools such as Salesforce, Adobe Target, and Kameleoon.
+        </p>
+      </section>
+
+      <!-- Skills -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-6">Technical Skills</h2>
+        <div class="flex flex-wrap gap-3">
+          {skills.map((skill) => (
+            <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white/80 text-sm">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <!-- Tools -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-6">Tools & Technologies</h2>
+        <div class="flex flex-wrap gap-3">
+          {tools.map((tool) => (
+            <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white/80 text-sm">
+              {tool}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-8">Experience</h2>
+        <div class="space-y-8">
+          {sortedExperience.map(async (job) => {
+            const { Content } = await render(job);
+            return (
+              <div class="border border-white/10 rounded-lg p-6">
+                <div class="flex items-start justify-between flex-wrap gap-2 mb-3">
+                  <div>
+                    <h3 class="text-lg font-semibold">{job.data.title}</h3>
+                    <a
+                      href={job.data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-accent hover:text-accent/80 font-medium"
+                    >
+                      {job.data.company}
+                    </a>
+                  </div>
+                  <span class="text-white/50 text-sm">{job.data.range}</span>
+                </div>
+                <p class="text-white/60 text-sm mb-3">{job.data.location}</p>
+                <div class="prose prose-invert prose-sm max-w-none">
+                  <Content />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Base>

@@ -1,0 +1,29 @@
+---
+import { SITE_NAME, SITE_YEAR } from '../consts';
+---
+
+<footer class="bg-primary border-t border-white/10 py-8 mt-20">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-white/50 text-sm">
+      &copy; {SITE_YEAR} {SITE_NAME}. Built with Astro.
+    </p>
+    <div class="flex items-center gap-6">
+      <a
+        href="https://github.com/DavidZhouNYC"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/50 hover:text-white text-sm transition-colors"
+      >
+        GitHub
+      </a>
+      <a
+        href="https://www.linkedin.com/in/davidzhounyc/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/50 hover:text-white text-sm transition-colors"
+      >
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Blog | David Zhou" description="Coming soon - a blog about software engineering, web development, and technology.">
+  <Nav />
+
+  <main class="pt-24 pb-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+
+      <!-- Header -->
+      <section class="mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Blog</h1>
+        <p class="text-xl text-white/60">
+          Thoughts on software engineering, web development, and technology.
+        </p>
+      </section>
+
+      <!-- Coming Soon -->
+      <div class="border border-white/10 rounded-lg p-12">
+        <div class="text-6xl mb-6">📝</div>
+        <h2 class="text-2xl font-semibold mb-4">Coming Soon</h2>
+        <p class="text-white/60 mb-6 max-w-md mx-auto">
+          I am working on writing some articles about software engineering, web development best practices, and lessons learned from building projects.
+        </p>
+        <p class="text-white/40 text-sm">
+          Check back soon, or follow me on social media for updates.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Base>

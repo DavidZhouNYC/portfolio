@@ -1,0 +1,52 @@
+---
+import { SITE_NAME, SITE_DESCRIPTION } from '../consts';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = SITE_DESCRIPTION } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-primary text-white font-sans antialiased">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import "tailwindcss";
+
+  @theme {
+    --color-primary: #202124;
+    --color-accent: #5f259f;
+
+    --font-family-sans: 'Inter', system-ui, sans-serif;
+    --font-family-mono: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  a {
+    transition: color 0.2s;
+  }
+</style>
