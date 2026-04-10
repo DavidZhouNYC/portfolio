@@ -7,7 +7,10 @@
     "dev": "astro dev",
     "build": "bun run astro build",
     "preview": "bun run astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:ci": "playwright test"
   },
   "dependencies": {
     "astro": "^6.1.5",
@@ -18,5 +21,8 @@
     "tailwindcss": "^4.1.5",
     "typescript": "^5.7.3",
     "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
   }
 }
